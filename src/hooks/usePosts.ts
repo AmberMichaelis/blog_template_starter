@@ -5,9 +5,10 @@ import apiClient from '../services/api-client';
 import { CanceledError } from 'axios';
 
 // This interface is defined on https://api.rawg.io/docs/#operation/games_list. Parameters are listed under "results".
-interface BlogPost {
+export interface BlogPost {
     id: number;
     name: string;
+    background_image: string;
 }
 
 // This interface is defined on https://api.rawg.io/docs/#operation/games_list. Paramenters are listed under "results schema".
