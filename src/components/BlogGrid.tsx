@@ -4,6 +4,7 @@ import { SimpleGrid, Text } from '@chakra-ui/react';
 import usePosts from '../hooks/usePosts';
 import PostCard from './PostCard';
 import PostCardSkeleton from './PostCardSkeleton';
+import PostCardContainer from './PostCardContainer';
 
 const BlogGrid = () => {
   const { posts, error, isLoading } = usePosts();
@@ -17,7 +18,12 @@ const BlogGrid = () => {
         padding={10}
         spacing={10}
       >
-        {isLoading && skeletons.map((skeleton) => <PostCardSkeleton key={skeleton}/>)}
+        {isLoading &&
+          skeletons.map((skeleton) => (
+            <PostCardContainer>
+              <PostCardSkeleton key={skeleton} />
+            </PostCardContainer>
+          ))}
         {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}

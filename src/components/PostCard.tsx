@@ -12,7 +12,7 @@ interface PostCardProps {
 
 const PostCard = ({ post }: PostCardProps) => {
   return (
-    <Card width='300px' borderRadius={10} overflow='hidden'>
+    <Card>
       <Image src={getCroppedImageUrl(post.background_image)} />
       <CardBody>
         <Heading fontSize='2xl'>{post.name}</Heading>
