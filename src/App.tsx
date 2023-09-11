@@ -3,12 +3,13 @@
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import BlogGrid from './components/BlogGrid';
+import TopicList from './components/TopicList';
 
 function App() {
   return (
     <Grid
       templateAreas={{
-        base: `"nav" "main"`,
+        base: `"nav" "aside"`,
         lg: `"nav nav" "aside main"` // larger than 1024px
       }}
     >
@@ -17,7 +18,7 @@ function App() {
       </GridItem>
       <Show above='lg'>
       <GridItem area='aside'>
-        Aside
+        <TopicList />
       </GridItem>
       </Show>
       <GridItem area='main'>
