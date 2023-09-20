@@ -1,11 +1,14 @@
 /** @format */
 
-import { HStack, Image, List, ListItem, Text } from '@chakra-ui/react';
+import { HStack, Image, List, ListItem, Spinner, Text } from '@chakra-ui/react';
 import useTopics from '../hooks/useTopics';
 import getCroppedImageUrl from '../services/image-url';
 
 const TopicList = () => {
-  const { data } = useTopics();
+  const { data, isLoading, error } = useTopics();
+
+  if (error) return null;
+  if (isLoading) return <Spinner />;
 
   return (
     <List>
