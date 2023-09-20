@@ -3,11 +3,11 @@
 import useTopics from '../hooks/useTopics';
 
 const TopicList = () => {
-  const { topics } = useTopics();
+  const { data } = useTopics()
   
   return (
     <ul>
-      {topics.map(topic => 
+      {data.map(topic => 
         <li key={topic.id}>{topic.name}</li>
       )}
     </ul>

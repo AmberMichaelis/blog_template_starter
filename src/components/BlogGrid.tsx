@@ -7,7 +7,7 @@ import PostCardSkeleton from './PostCardSkeleton';
 import PostCardContainer from './PostCardContainer';
 
 const BlogGrid = () => {
-  const { posts, error, isLoading } = usePosts();
+  const { data, error, isLoading } = usePosts();
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -24,7 +24,7 @@ const BlogGrid = () => {
               <PostCardSkeleton key={skeleton} />
             </PostCardContainer>
           ))}
-        {posts.map((post) => (
+        {data.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
       </SimpleGrid>
