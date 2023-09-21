@@ -5,9 +5,14 @@ import usePosts from '../hooks/usePosts';
 import PostCard from './PostCard';
 import PostCardSkeleton from './PostCardSkeleton';
 import PostCardContainer from './PostCardContainer';
+import { Topic } from '../hooks/useTopics';
 
-const BlogGrid = () => {
-  const { data, error, isLoading } = usePosts();
+interface Props {
+  selectedTopic: Topic | null;
+}
+
+const BlogGrid = ({ selectedTopic }: Props) => {
+  const { data, error, isLoading } = usePosts(selectedTopic);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -20,12 +25,14 @@ const BlogGrid = () => {
       >
         {isLoading &&
           skeletons.map((skeleton) => (
-            <PostCardContainer>
-              <PostCardSkeleton key={skeleton} />
+            <PostCardContainer key={skeleton}>
+              <PostCardSkeleton />
             </PostCardContainer>
           ))}
         {data.map((post) => (
-          <PostCard key={post.id} post={post} />
+          <PostCardContainer key={post.id}>
+            <PostCard post={post} />
+          </PostCardContainer>
         ))}
       </SimpleGrid>
     </>
