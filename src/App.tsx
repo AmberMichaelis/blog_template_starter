@@ -1,6 +1,6 @@
 /** @format */
 
-import { Grid, GridItem, Show } from '@chakra-ui/react';
+import { Grid, GridItem, HStack, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import BlogGrid from './components/BlogGrid';
 import TopicList from './components/TopicList';
@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { Topic } from './hooks/useTopics';
 import IconSelectorDropDown from './components/IconSelectorDropDown';
 import { PlatformIcons } from './hooks/usePosts';
+import SortSelectorDropDown from './components/SortSelectorDropDown';
 
 export interface PostQuery {
   topic: Topic | null;
@@ -40,10 +41,13 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area='main'>
-        <IconSelectorDropDown
-          selectedIcon={postQuery.icon}
-          onSelectIcon={(icon) => setPostQuery({ ...postQuery, icon })}
-        />
+        <HStack spacing={5} paddingLeft={2} marginBottom={5}>
+          <IconSelectorDropDown
+            selectedIcon={postQuery.icon}
+            onSelectIcon={(icon) => setPostQuery({ ...postQuery, icon })}
+          />
+          <SortSelectorDropDown  />
+        </HStack>
         <BlogGrid postQuery={postQuery} />
       </GridItem>
     </Grid>
