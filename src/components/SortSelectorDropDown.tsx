@@ -3,19 +3,41 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { BsChevronDown } from 'react-icons/bs';
 
-const SortSelectorDropDown = () => {
+interface Props {
+  onSelectSortOrder: (sortOrder: string) => void;
+  sortOrder: string;
+}
+
+const SortSelectorDropDown = ({ onSelectSortOrder, sortOrder }: Props) => {
+  // sortOrder values come from the rawg api for ordering query parameter https://api.rawg.io/docs/#operation/games_list
+  const sortOrders = [
+    { value: '', label: 'Relevance' },
+    { value: '-added', label: 'Date Added' }, // the hypen releases the returned list and shows newest first, see api documentation
+    { value: 'name', label: 'Name' },
+    { value: '-released', label: 'Release Date' },
+    { value: '-metacritic', label: 'Popularity' },
+    { value: '-rating', label: 'Average Rating' },
+  ];
+
+  const currentSortOrder = sortOrders.find(
+    (order) => order.value === sortOrder
+  );
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order By: Relevance
+        Order By: {currentSortOrder?.label || "Relevance"}
       </MenuButton>
       <MenuList>
-        <MenuItem>Relevance</MenuItem>
-        <MenuItem>Date Added</MenuItem>
-        <MenuItem>Name</MenuItem>
-        <MenuItem>Release Date</MenuItem>
-        <MenuItem>Popularity</MenuItem>
-        <MenuItem>Average Rating</MenuItem>
+        {sortOrders.map((order) => (
+          <MenuItem
+            onClick={() => onSelectSortOrder(order.value)}
+            key={order.value}
+            value={order.value}
+          >
+            {order.label}
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );
