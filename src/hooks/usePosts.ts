@@ -3,7 +3,7 @@
 import useData from './useData';
 import { Topic } from './useTopics';
 
-export interface Platform {
+export interface PlatformIcons {
   id: number;
   name: string;
   slug: string;
@@ -14,13 +14,24 @@ export interface BlogPost {
   id: number;
   name: string;
   background_image: string;
-  parent_platforms: { platform: Platform }[];
+  parent_platforms: { platform: PlatformIcons }[];
   metacritic: number;
 }
 
-const usePosts = (selectedTopic: Topic | null) =>
-  useData<BlogPost>('/games', { params: { genres: selectedTopic?.id } }, [
-    selectedTopic?.id,
-  ]);
+const usePosts = (
+  selectedTopic: Topic | null,
+  selectedIcon: PlatformIcons | null
+) =>
+  useData<BlogPost>(
+    '/games',
+    {
+      // These params have to have the same name as in the api
+      params: {
+        genres: selectedTopic?.id,
+        platforms: selectedIcon?.id,
+      },
+    },
+    [selectedTopic?.id, selectedIcon?.id]
+  );
 
 export default usePosts;

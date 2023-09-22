@@ -2,7 +2,7 @@
 
 import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react';
 import { BlogPost } from '../hooks/usePosts';
-import PlatformIconList from './PlatformIconList';
+import IconList from './IconList';
 import CriticScore from './CriticScore';
 import getCroppedImageUrl from '../services/image-url';
 
@@ -17,8 +17,8 @@ const PostCard = ({ post }: PostCardProps) => {
       <CardBody>
         <Heading fontSize='2xl'>{post.name}</Heading>
         <HStack justifyContent='space-between'>
-          <PlatformIconList
-            platforms={post.parent_platforms.map((p) => p.platform)}
+          <IconList
+            icons={post.parent_platforms.map((p) => p.platform)}
           />
           <CriticScore score={post.metacritic} />
         </HStack>

@@ -6,32 +6,38 @@ import BlogGrid from './components/BlogGrid';
 import TopicList from './components/TopicList';
 import { useState } from 'react';
 import { Topic } from './hooks/useTopics';
-
+import IconSelectorDropDown from './components/IconSelectorDropDown';
+import { PlatformIcons } from './hooks/usePosts';
 
 function App() {
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
+  const [selectedIcon, setSelectedIcon] = useState<PlatformIcons | null>(null);
 
   return (
     <Grid
       templateAreas={{
         base: `"nav" "main"`,
-        lg: `"nav nav" "aside main"` // larger than 1024px
+        lg: `"nav nav" "aside main"`, // larger than 1024px
       }}
       templateColumns={{
         base: '1fr',
-        lg: '200px 1fr'
+        lg: '200px 1fr',
       }}
     >
       <GridItem area='nav'>
         <NavBar />
       </GridItem>
       <Show above='lg'>
-      <GridItem area='aside' paddingX={5}>
-        <TopicList selectedTopic={selectedTopic} onSelectTopic={(topic) => setSelectedTopic(topic)} />
-      </GridItem>
+        <GridItem area='aside' paddingX={5}>
+          <TopicList
+            selectedTopic={selectedTopic}
+            onSelectTopic={(topic) => setSelectedTopic(topic)}
+          />
+        </GridItem>
       </Show>
       <GridItem area='main'>
-        <BlogGrid selectedTopic={selectedTopic} />
+        <IconSelectorDropDown selectedIcon={selectedIcon} onSelectIcon={(icon) => setSelectedIcon(icon)} />
+        <BlogGrid selectedIcon={selectedIcon} selectedTopic={selectedTopic} />
       </GridItem>
     </Grid>
   );

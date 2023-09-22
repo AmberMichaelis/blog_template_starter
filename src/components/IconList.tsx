@@ -12,14 +12,15 @@ import { MdPhoneIphone } from 'react-icons/md';
 import { SiNintendo } from 'react-icons/si';
 import { BsGlobe } from 'react-icons/bs';
 import { HStack, Icon } from '@chakra-ui/react';
-import { Platform } from '../hooks/usePosts';
+import { PlatformIcons } from '../hooks/usePosts';
 import { IconType } from 'react-icons';
 
+
 interface Props {
-  platforms: Platform[];
+  icons: PlatformIcons[];
 }
 
-const PlatformIconList = ({ platforms }: Props) => {
+const IconList = ({ icons }: Props) => {
     const iconMap: { [key: string]: IconType} = {
         // slug: icon
         pc: FaWindows,
@@ -34,11 +35,11 @@ const PlatformIconList = ({ platforms }: Props) => {
     }
   return (
     <HStack marginY={1}>
-      {platforms.map((platform) => (
-        <Icon as={iconMap[platform.slug]} key={platform.id} color='gray.500'/>
+      {icons.map((icon) => (
+        <Icon as={iconMap[icon.slug]} key={icon.id} color='gray.500'/>
       ))}
     </HStack>
   );
 };
 
-export default PlatformIconList;
+export default IconList;
