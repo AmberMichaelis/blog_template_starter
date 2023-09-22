@@ -5,16 +5,14 @@ import usePosts from '../hooks/usePosts';
 import PostCard from './PostCard';
 import PostCardSkeleton from './PostCardSkeleton';
 import PostCardContainer from './PostCardContainer';
-import { Topic } from '../hooks/useTopics';
-import { PlatformIcons } from '../hooks/usePosts';
+import { PostQuery } from '../App';
 
 interface Props {
-  selectedTopic: Topic | null;
-  selectedIcon: PlatformIcons | null;
+  postQuery: PostQuery;
 }
 
-const BlogGrid = ({ selectedTopic, selectedIcon }: Props) => {
-  const { data, error, isLoading } = usePosts(selectedTopic, selectedIcon);
+const BlogGrid = ({ postQuery }: Props) => {
+  const { data, error, isLoading } = usePosts(postQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (

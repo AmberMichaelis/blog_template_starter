@@ -9,9 +9,13 @@ import { Topic } from './hooks/useTopics';
 import IconSelectorDropDown from './components/IconSelectorDropDown';
 import { PlatformIcons } from './hooks/usePosts';
 
+export interface PostQuery {
+  topic: Topic | null;
+  icon: PlatformIcons | null;
+}
+
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
-  const [selectedIcon, setSelectedIcon] = useState<PlatformIcons | null>(null);
+  const [postQuery, setPostQuery] = useState<PostQuery>({} as PostQuery);
 
   return (
     <Grid
@@ -30,14 +34,17 @@ function App() {
       <Show above='lg'>
         <GridItem area='aside' paddingX={5}>
           <TopicList
-            selectedTopic={selectedTopic}
-            onSelectTopic={(topic) => setSelectedTopic(topic)}
+            selectedTopic={postQuery.topic}
+            onSelectTopic={(topic) => setPostQuery({ ...postQuery, topic })}
           />
         </GridItem>
       </Show>
       <GridItem area='main'>
-        <IconSelectorDropDown selectedIcon={selectedIcon} onSelectIcon={(icon) => setSelectedIcon(icon)} />
-        <BlogGrid selectedIcon={selectedIcon} selectedTopic={selectedTopic} />
+        <IconSelectorDropDown
+          selectedIcon={postQuery.icon}
+          onSelectIcon={(icon) => setPostQuery({ ...postQuery, icon })}
+        />
+        <BlogGrid postQuery={postQuery} />
       </GridItem>
     </Grid>
   );

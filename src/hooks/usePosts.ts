@@ -1,7 +1,7 @@
 /** @format */
 
+import { PostQuery } from '../App';
 import useData from './useData';
-import { Topic } from './useTopics';
 
 export interface PlatformIcons {
   id: number;
@@ -18,20 +18,17 @@ export interface BlogPost {
   metacritic: number;
 }
 
-const usePosts = (
-  selectedTopic: Topic | null,
-  selectedIcon: PlatformIcons | null
-) =>
+const usePosts = (postQuery: PostQuery) =>
   useData<BlogPost>(
     '/games',
     {
-      // These params have to have the same name as in the api
+      // These params keys have to have the same name as in the api
       params: {
-        genres: selectedTopic?.id,
-        platforms: selectedIcon?.id,
+        genres: postQuery.topic?.id,
+        platforms: postQuery.icon?.id,
       },
     },
-    [selectedTopic?.id, selectedIcon?.id]
+    [postQuery]
   );
 
 export default usePosts;
