@@ -3,6 +3,7 @@
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -23,30 +24,34 @@ const TopicList = ({ onSelectTopic, selectedTopic }: Props) => {
   if (isLoading) return <Spinner />;
 
   return (
-    <List>
-      {data.map((topic) => (
-        <ListItem key={topic.id} paddingY='5px'>
-          <HStack>
-            <Image
-              boxSize='32px'
-              borderRadius={8}
-              src={getCroppedImageUrl(topic.image_background)}
-            />
-            <Button
-              onClick={() => onSelectTopic(topic)}
-              fontSize='lg'
-              fontWeight={topic.id === selectedTopic?.id ? 'bold' : 'normal'}
-              style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}
-              textColor={topic.id === selectedTopic?.id ? 'magenta' : '#fff'}
-              textAlign='left'
-              variant='link'
-            >
-              {topic.name}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <Heading fontSize='2xl' marginBottom={3}>Topics</Heading>
+      <List>
+        {data.map((topic) => (
+          <ListItem key={topic.id} paddingY='5px'>
+            <HStack>
+              <Image
+                boxSize='32px'
+                borderRadius={8}
+                objectFit='cover'
+                src={getCroppedImageUrl(topic.image_background)}
+              />
+              <Button
+                onClick={() => onSelectTopic(topic)}
+                fontSize='lg'
+                fontWeight={topic.id === selectedTopic?.id ? 'bold' : 'normal'}
+                whiteSpace='normal'
+                textColor={topic.id === selectedTopic?.id ? 'magenta' : '#fff'}
+                textAlign='left'
+                variant='link'
+              >
+                {topic.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
+    </>
   );
 };
 

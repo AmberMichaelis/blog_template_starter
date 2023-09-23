@@ -16,6 +16,7 @@ export interface BlogPost {
   background_image: string;
   parent_platforms: { platform: PlatformIcons }[];
   metacritic: number;
+  rating_top: number;
 }
 
 const usePosts = (postQuery: PostQuery) =>
