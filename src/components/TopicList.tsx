@@ -10,7 +10,6 @@ import {
 } from '@chakra-ui/react';
 import useTopics, { Topic } from '../hooks/useTopics';
 import getCroppedImageUrl from '../services/image-url';
-import { wrap } from 'framer-motion';
 
 interface Props {
   onSelectTopic: (topic: Topic) => void;
@@ -37,7 +36,7 @@ const TopicList = ({ onSelectTopic, selectedTopic }: Props) => {
               onClick={() => onSelectTopic(topic)}
               fontSize='lg'
               fontWeight={topic.id === selectedTopic?.id ? 'bold' : 'normal'}
-              whiteSpace={wrap}
+              style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}
               textColor={topic.id === selectedTopic?.id ? 'magenta' : '#fff'}
               textAlign='left'
               variant='link'

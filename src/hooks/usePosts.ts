@@ -26,7 +26,8 @@ const usePosts = (postQuery: PostQuery) =>
       params: {
         genres: postQuery.topic?.id,
         platforms: postQuery.icon?.id,
-        ordering: postQuery.sortOrder
+        ordering: postQuery.sortOrder,
+        search: postQuery.searchText
       },
     },
     [postQuery]

@@ -3,11 +3,17 @@
 import { HStack, Image, Text } from '@chakra-ui/react';
 import logo from '../assets/BlogTemplate Resources/Logo/logo.webp';
 import ColorModeSwitch from './ColorModeSwitch';
+import SearchInput from './SearchInput';
 
-const NavBar = () => {
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+
+const NavBar = ({ onSearch }: Props) => {
   return (
-    <HStack justifyContent='space-between' paddingX='20px'>
+    <HStack paddingX='20px' marginBottom={5} marginTop={5}>
       <Image src={logo} boxSize='60px' />
+      <SearchInput onSearch={onSearch} />
       <Text>
         <ColorModeSwitch />
       </Text>

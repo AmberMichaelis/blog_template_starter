@@ -14,6 +14,7 @@ export interface PostQuery {
   topic: Topic | null;
   icon: PlatformIcons | null;
   sortOrder: string;
+  searchText: string;
 }
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
       }}
     >
       <GridItem area='nav'>
-        <NavBar />
+        <NavBar onSearch={searchText => setPostQuery({...postQuery, searchText})}/>
       </GridItem>
       <Show above='lg'>
         <GridItem area='aside' paddingX={5}>
