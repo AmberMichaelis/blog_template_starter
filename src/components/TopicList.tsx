@@ -41,7 +41,7 @@ const TopicList = ({ onSelectTopic, selectedTopic }: Props) => {
                 fontSize='lg'
                 fontWeight={topic.id === selectedTopic?.id ? 'bold' : 'normal'}
                 whiteSpace='normal'
-                textColor={topic.id === selectedTopic?.id ? 'magenta' : '#fff'}
+                textColor={topic.id === selectedTopic?.id ? 'magenta' : ''}
                 textAlign='left'
                 variant='link'
               >

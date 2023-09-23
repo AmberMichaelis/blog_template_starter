@@ -8,7 +8,7 @@ interface Props {
 // Basic styles for cards and loading skeletons
 const PostCardContainer = ({children}: Props) => {
   return (
-    <Box width="100%" borderRadius={10} overflow='hidden'>
+    <Box width="100%" borderRadius={10} overflow='hidden' border='1px' borderColor='magenta'>
         {children}
     </Box>
   )

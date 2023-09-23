@@ -1,6 +1,6 @@
 /** @format */
 
-import useData from './useData';
+import topics from '../data/topics';
 
 export interface Topic {
   id: number;
@@ -8,6 +8,6 @@ export interface Topic {
   image_background: string;
 }
 
-const useTopics = () =>  useData<Topic>('/genres');
+const useTopics = () => ({ data: topics, isLoading: false, error: null });
 
 export default useTopics;
