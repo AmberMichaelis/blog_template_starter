@@ -9,6 +9,7 @@ import { Topic } from './hooks/useTopics';
 import IconSelectorDropDown from './components/IconSelectorDropDown';
 import { PlatformIcons } from './hooks/usePosts';
 import SortSelectorDropDown from './components/SortSelectorDropDown';
+import PostHeading from './components/PostHeading';
 
 export interface PostQuery {
   topic: Topic | null;
@@ -32,7 +33,9 @@ function App() {
       }}
     >
       <GridItem area='nav'>
-        <NavBar onSearch={searchText => setPostQuery({...postQuery, searchText})}/>
+        <NavBar
+          onSearch={(searchText) => setPostQuery({ ...postQuery, searchText })}
+        />
       </GridItem>
       <Show above='lg'>
         <GridItem area='aside' paddingX={5}>
@@ -43,15 +46,23 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area='main'>
-        <Flex  paddingLeft={2} marginBottom={5}>
-          <Box marginRight={5}>
-          <IconSelectorDropDown
-            selectedIcon={postQuery.icon}
-            onSelectIcon={(icon) => setPostQuery({ ...postQuery, icon })}
-            />
+        <Box paddingLeft={2}>
+          <PostHeading postQuery={postQuery} />
+          <Flex marginBottom={5}>
+            <Box marginRight={5}>
+              <IconSelectorDropDown
+                selectedIcon={postQuery.icon}
+                onSelectIcon={(icon) => setPostQuery({ ...postQuery, icon })}
+              />
             </Box>
-          <SortSelectorDropDown  sortOrder={postQuery.sortOrder} onSelectSortOrder={(sortOrder) => setPostQuery({...postQuery, sortOrder})}/>
-        </Flex>
+            <SortSelectorDropDown
+              sortOrder={postQuery.sortOrder}
+              onSelectSortOrder={(sortOrder) =>
+                setPostQuery({ ...postQuery, sortOrder })
+              }
+            />
+          </Flex>
+        </Box>
         <BlogGrid postQuery={postQuery} />
       </GridItem>
     </Grid>

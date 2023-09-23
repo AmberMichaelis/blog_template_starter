@@ -11,7 +11,7 @@ interface Props {
 
 const NavBar = ({ onSearch }: Props) => {
   return (
-    <HStack paddingX='20px' marginBottom={5} marginTop={5}>
+    <HStack paddingX='20px' marginY={5}>
       <Image src={logo} boxSize='60px' />
       <SearchInput onSearch={onSearch} />
       <Text>
