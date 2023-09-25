@@ -27,7 +27,7 @@ const TopicList = ({ onSelectTopic, selectedTopic }: Props) => {
     <>
       <Heading fontSize='2xl' marginBottom={3}>Topics</Heading>
       <List>
-        {data.map((topic) => (
+        {data?.results.map((topic) => (
           <ListItem key={topic.id} paddingY='5px'>
             <HStack>
               <Image
