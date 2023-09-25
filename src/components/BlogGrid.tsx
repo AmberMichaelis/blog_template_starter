@@ -15,7 +15,7 @@ const BlogGrid = ({ postQuery }: Props) => {
   const { data, error, isLoading } = usePosts(postQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
 
   return (
       <SimpleGrid
@@ -29,7 +29,7 @@ const BlogGrid = ({ postQuery }: Props) => {
               <PostCardSkeleton />
             </PostCardContainer>
           ))}
-        {data.map((post) => (
+        {data?.results.map((post) => (
           <PostCardContainer key={post.id}>
             <PostCard post={post} />
           </PostCardContainer>

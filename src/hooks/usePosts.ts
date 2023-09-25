@@ -1,7 +1,8 @@
 /** @format */
 
+import { useQuery } from '@tanstack/react-query';
 import { PostQuery } from '../App';
-import useData from './useData';
+import apiClient, { FetchResponse } from '../services/api-client';
 
 export interface Icons {
   id: number;
@@ -20,18 +21,19 @@ export interface BlogPost {
 }
 
 const usePosts = (postQuery: PostQuery) =>
-  useData<BlogPost>(
-    '/games',
-    {
-      // These params keys have to have the same name as in the api
-      params: {
-        genres: postQuery.topic?.id,
-        platforms: postQuery.icon?.id,
-        ordering: postQuery.sortOrder,
-        search: postQuery.searchText,
-      },
-    },
-    [postQuery]
-  );
+  useQuery<FetchResponse<BlogPost>, Error>({
+    queryKey: ['posts', postQuery],
+    queryFn: () =>
+      apiClient
+        .get<FetchResponse<BlogPost>>('/games', {
+          params: {
+            genres: postQuery.topic?.id,
+            parent_platforms: postQuery.icon?.id,
+            ordering: postQuery.sortOrder,
+            search: postQuery.searchText,
+          },
+        })
+        .then((res) => res.data),
+  });
 
 export default usePosts;

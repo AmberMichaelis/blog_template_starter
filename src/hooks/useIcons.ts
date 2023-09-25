@@ -5,8 +5,6 @@ import icons from '../data/icons';
 import apiClient, { FetchResponse } from '../services/api-client';
 import { Icons } from './usePosts';
 
-// const useIcons = () => ({ data: icons, isLoading: false, error: null });
-
 const useIcons = () =>
   useQuery({
     queryKey: ['icons'],
