@@ -7,13 +7,13 @@ import TopicList from './components/TopicList';
 import { useState } from 'react';
 import { Topic } from './hooks/useTopics';
 import IconSelectorDropDown from './components/IconSelectorDropDown';
-import { PlatformIcons } from './hooks/usePosts';
+import { Icons } from './hooks/usePosts';
 import SortSelectorDropDown from './components/SortSelectorDropDown';
 import PostHeading from './components/PostHeading';
 
 export interface PostQuery {
   topic: Topic | null;
-  icon: PlatformIcons | null;
+  icon: Icons | null;
   sortOrder: string;
   searchText: string;
 }

@@ -12,31 +12,30 @@ import { MdPhoneIphone } from 'react-icons/md';
 import { SiNintendo } from 'react-icons/si';
 import { BsGlobe } from 'react-icons/bs';
 import { HStack, Icon } from '@chakra-ui/react';
-import { PlatformIcons } from '../hooks/usePosts';
+import { Icons } from '../hooks/usePosts';
 import { IconType } from 'react-icons';
 
-
 interface Props {
-  icons: PlatformIcons[];
+  icons: Icons[];
 }
 
 const IconList = ({ icons }: Props) => {
-    const iconMap: { [key: string]: IconType} = {
-        // slug: icon
-        pc: FaWindows,
-        playstation: FaPlaystation,
-        xbox: FaXbox,
-        nintendo: SiNintendo,
-        mac: FaApple,
-        linux: FaLinux,
-        andriod: FaAndroid,
-        ios: MdPhoneIphone,
-        web: BsGlobe
-    }
+  const iconMap: { [key: string]: IconType } = {
+    // slug: icon
+    pc: FaWindows,
+    playstation: FaPlaystation,
+    xbox: FaXbox,
+    nintendo: SiNintendo,
+    mac: FaApple,
+    linux: FaLinux,
+    andriod: FaAndroid,
+    ios: MdPhoneIphone,
+    web: BsGlobe,
+  };
   return (
     <HStack marginY={1}>
       {icons.map((icon) => (
-        <Icon as={iconMap[icon.slug]} key={icon.id} color='gray.500'/>
+        <Icon as={iconMap[icon.slug]} key={icon.id} color='gray.500' />
       ))}
     </HStack>
   );

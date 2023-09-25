@@ -3,7 +3,7 @@
 import { PostQuery } from '../App';
 import useData from './useData';
 
-export interface PlatformIcons {
+export interface Icons {
   id: number;
   name: string;
   slug: string;
@@ -14,7 +14,7 @@ export interface BlogPost {
   id: number;
   name: string;
   background_image: string;
-  parent_platforms: { platform: PlatformIcons }[];
+  parent_platforms: { platform: Icons }[];
   metacritic: number;
   rating_top: number;
 }
@@ -28,7 +28,7 @@ const usePosts = (postQuery: PostQuery) =>
         genres: postQuery.topic?.id,
         platforms: postQuery.icon?.id,
         ordering: postQuery.sortOrder,
-        search: postQuery.searchText
+        search: postQuery.searchText,
       },
     },
     [postQuery]
