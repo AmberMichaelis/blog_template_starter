@@ -2,12 +2,11 @@
 
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { BsChevronDown } from 'react-icons/bs';
-import { Icons } from '../hooks/usePosts';
-import useIcons from '../hooks/useIcons';
+import useIcons, { Icon } from '../hooks/useIcons';
 
 interface Props {
-  onSelectIcon: (icon: Icons) => void;
-  selectedIcon: Icons | null;
+  onSelectIcon: (icon: Icon) => void;
+  selectedIcon: Icon | null;
 }
 
 const IconSelectorDropDown = ({ onSelectIcon, selectedIcon }: Props) => {
@@ -20,7 +19,7 @@ const IconSelectorDropDown = ({ onSelectIcon, selectedIcon }: Props) => {
         {selectedIcon?.name || 'Platforms'}
       </MenuButton>
       <MenuList>
-        {data?.results.map((icon: Icons) => (
+        {data?.results.map((icon: Icon) => (
           <MenuItem onClick={() => onSelectIcon(icon)} key={icon.id}>
             {icon.name}
           </MenuItem>

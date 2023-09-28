@@ -12,11 +12,11 @@ import { MdPhoneIphone } from 'react-icons/md';
 import { SiNintendo } from 'react-icons/si';
 import { BsGlobe } from 'react-icons/bs';
 import { HStack, Icon } from '@chakra-ui/react';
-import { Icons } from '../hooks/usePosts';
+import { Icon as Icona } from '../hooks/useIcons';
 import { IconType } from 'react-icons';
 
 interface Props {
-  icons: Icons[];
+  icons: Icona[];
 }
 
 const IconList = ({ icons }: Props) => {

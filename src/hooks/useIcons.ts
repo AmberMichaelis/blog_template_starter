@@ -2,16 +2,20 @@
 
 import { useQuery } from '@tanstack/react-query';
 import icons from '../data/icons';
-import apiClient, { FetchResponse } from '../services/api-client';
-import { Icons } from './usePosts';
+import APIClient from '../services/api-client';
+
+const apiClient = new APIClient<Icon>('/platforms/lists/parents');
+
+export interface Icon {
+  id: number;
+  name: string;
+  slug: string;
+}
 
 const useIcons = () =>
   useQuery({
     queryKey: ['icons'],
-    queryFn: () =>
-      apiClient
-        .get<FetchResponse<Icons>>('/platforms/lists/parents')
-        .then((res) => res.data),
+    queryFn: apiClient.getAll,
     staleTime: 24 * 60 * 60 * 1000, // will request update from backend every 24 hours
     initialData: { count: icons.length, results: icons },
   });

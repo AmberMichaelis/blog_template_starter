@@ -2,7 +2,9 @@
 
 import { useQuery } from '@tanstack/react-query';
 import topics from '../data/topics';
-import apiClient, { FetchResponse } from '../services/api-client';
+import APIClient from '../services/api-client';
+
+const apiClient = new APIClient<Topic>('/genres');
 
 export interface Topic {
   id: number;
@@ -13,8 +15,7 @@ export interface Topic {
 const useTopics = () =>
   useQuery({
     queryKey: ['topics'],
-    queryFn: () =>
-      apiClient.get<FetchResponse<Topic>>('/genres').then((res) => res.data),
+    queryFn: apiClient.getAll,
     staleTime: 24 * 60 * 60 * 1000, // will request update from backend every 24 hours
     initialData: { count: topics.length, results: topics },
   });
