@@ -1,6 +1,6 @@
 /** @format */
 
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { PostQuery } from '../App';
 import APIClient, { FetchResponse } from '../services/api-client';
 import { Icon } from './useIcons';
@@ -18,17 +18,21 @@ export interface Post {
 }
 
 const usePosts = (postQuery: PostQuery) =>
-  useQuery<FetchResponse<Post>, Error>({
+  useInfiniteQuery<FetchResponse<Post>, Error>({
     queryKey: ['posts', postQuery],
-    queryFn: () =>
+    queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
         params: {
           genres: postQuery.topic?.id,
           parent_platforms: postQuery.icon?.id,
           ordering: postQuery.sortOrder,
           search: postQuery.searchText,
+          page: pageParam,
         },
       }),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.next ? allPages.length + 1 : undefined;
+    },
   });
 
 export default usePosts;
