@@ -23,8 +23,8 @@ const usePosts = (postQuery: PostQuery) =>
     queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
         params: {
-          genres: postQuery.topic?.id,
-          parent_platforms: postQuery.icon?.id,
+          genres: postQuery.topicId,
+          parent_platforms: postQuery.iconId,
           ordering: postQuery.sortOrder,
           search: postQuery.searchText,
           page: pageParam,

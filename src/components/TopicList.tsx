@@ -14,10 +14,10 @@ import getCroppedImageUrl from '../services/image-url';
 
 interface Props {
   onSelectTopic: (topic: Topic) => void;
-  selectedTopic: Topic | null;
+  selectedTopicId?: number;
 }
 
-const TopicList = ({ onSelectTopic, selectedTopic }: Props) => {
+const TopicList = ({ onSelectTopic, selectedTopicId }: Props) => {
   const { data, isLoading, error } = useTopics();
 
   if (error) return null;
@@ -25,7 +25,9 @@ const TopicList = ({ onSelectTopic, selectedTopic }: Props) => {
 
   return (
     <>
-      <Heading fontSize='2xl' marginBottom={3}>Topics</Heading>
+      <Heading fontSize='2xl' marginBottom={3}>
+        Topics
+      </Heading>
       <List>
         {data?.results.map((topic) => (
           <ListItem key={topic.id} paddingY='5px'>
@@ -39,9 +41,9 @@ const TopicList = ({ onSelectTopic, selectedTopic }: Props) => {
               <Button
                 onClick={() => onSelectTopic(topic)}
                 fontSize='lg'
-                fontWeight={topic.id === selectedTopic?.id ? 'bold' : 'normal'}
+                fontWeight={topic.id === selectedTopicId ? 'bold' : 'normal'}
                 whiteSpace='normal'
-                textColor={topic.id === selectedTopic?.id ? 'magenta' : ''}
+                textColor={topic.id === selectedTopicId ? 'magenta' : ''}
                 textAlign='left'
                 variant='link'
               >

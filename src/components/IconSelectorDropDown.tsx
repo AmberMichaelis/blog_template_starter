@@ -6,11 +6,12 @@ import useIcons, { Icon } from '../hooks/useIcons';
 
 interface Props {
   onSelectIcon: (icon: Icon) => void;
-  selectedIcon: Icon | null;
+  selectedIconId?: number;
 }
 
-const IconSelectorDropDown = ({ onSelectIcon, selectedIcon }: Props) => {
+const IconSelectorDropDown = ({ onSelectIcon, selectedIconId }: Props) => {
   const { data, error } = useIcons();
+  const selectedIcon = data?.results.find(i => i.id === selectedIconId)
 
   if (error) return null;
   return (
