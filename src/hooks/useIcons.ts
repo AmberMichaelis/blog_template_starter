@@ -17,7 +17,7 @@ const useIcons = () =>
     queryKey: ['icons'],
     queryFn: apiClient.getAll,
     staleTime: 24 * 60 * 60 * 1000, // will request update from backend every 24 hours
-    initialData: { count: icons.length, results: icons },
+    initialData: icons,
   });
 
 export default useIcons;

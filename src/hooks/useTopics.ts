@@ -17,7 +17,7 @@ const useTopics = () =>
     queryKey: ['topics'],
     queryFn: apiClient.getAll,
     staleTime: 24 * 60 * 60 * 1000, // will request update from backend every 24 hours
-    initialData: { count: topics.length, results: topics },
+    initialData: topics,
   });
 
 export default useTopics;
